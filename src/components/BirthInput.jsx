@@ -58,7 +58,6 @@ export default function BirthInput({ onSubmit }) {
             📅
             <input
               type="date"
-              ref={datePickerRef}
               value={text}
               onChange={handleDatePick}
               max={new Date().toISOString().split('T')[0]}
