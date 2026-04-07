@@ -45,7 +45,7 @@ html {
 }
 
 body {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Serif KR', 'Gowun Batang', serif;
   background: linear-gradient(160deg, #fdf4ff 0%, #fff0f8 50%, #f0f4ff 100%);
   background-attachment: fixed;
   color: var(--text-dark);
@@ -80,9 +80,9 @@ body {
 
 button {
   cursor: pointer;
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Serif KR', 'Gowun Batang', serif;
 }
 
 input {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Serif KR', 'Gowun Batang', serif;
 }

@@ -29,7 +29,7 @@
 }
 
 .title {
-  font-family: 'Cinzel', serif;
+  font-family: 'Gowun Batang', 'Noto Serif KR', serif;
   font-size: clamp(1.6rem, 5vw, 2.4rem);
   background: linear-gradient(135deg, #f472b6, #a78bfa, #f472b6);
   background-size: 200% auto;

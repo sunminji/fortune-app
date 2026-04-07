@@ -18,7 +18,7 @@
 }
 
 .dateText {
-  font-family: 'Cinzel', serif;
+  font-family: 'Gowun Batang', 'Noto Serif KR', serif;
   font-size: 1rem;
   color: var(--rose);
   letter-spacing: 0.1em;
@@ -124,7 +124,7 @@
 }
 
 .luckyTitle {
-  font-family: 'Cinzel', serif;
+  font-family: 'Gowun Batang', 'Noto Serif KR', serif;
   font-size: 0.95rem;
   background: linear-gradient(135deg, #f472b6, #a78bfa);
   -webkit-background-clip: text;
