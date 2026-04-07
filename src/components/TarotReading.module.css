@@ -1,0 +1,317 @@
+/* 인트로 */
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px;
+  gap: 12px;
+}
+
+.introIcon {
+  font-size: 52px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 16px rgba(167, 139, 250, 0.7));
+}
+
+.introTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  text-shadow: 0 0 12px rgba(201, 162, 39, 0.4);
+  margin: 0;
+}
+
+.introDesc {
+  color: var(--text-sub);
+  text-align: center;
+  line-height: 1.8;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.startBtn {
+  margin-top: 8px;
+  padding: 12px 36px;
+  border-radius: 50px;
+  border: 2px solid var(--gold);
+  background: transparent;
+  color: var(--gold-light);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.startBtn:hover {
+  background: rgba(201, 162, 39, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201, 162, 39, 0.25);
+}
+
+/* 카드 뽑기 */
+.picking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 8px 24px;
+  gap: 20px;
+}
+
+.pickGuide {
+  font-size: 0.95rem;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-align: center;
+}
+
+.spreadRow {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.spreadCard {
+  width: 64px;
+  height: 108px;
+  border-radius: 10px;
+  border: 2px solid rgba(201, 162, 39, 0.4);
+  background: linear-gradient(145deg, #1e0f45, #2d1265);
+  cursor: pointer;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spreadCard:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: var(--gold);
+  box-shadow: 0 12px 28px rgba(201, 162, 39, 0.35);
+}
+
+.spreadCardPicked {
+  transform: translateY(-14px) scale(1.08) !important;
+  border-color: var(--card-color, var(--gold)) !important;
+  box-shadow: 0 0 20px var(--card-color, rgba(201, 162, 39, 0.5)) !important;
+}
+
+.spreadCardDim {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.spreadCardBack {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.spreadCardPattern {
+  font-size: 24px;
+  color: rgba(201, 162, 39, 0.35);
+}
+
+.pickBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #1a0a3d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pickHint {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+/* 결과 */
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 8px 24px;
+  gap: 20px;
+}
+
+.resultTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin: 0;
+  text-align: center;
+}
+
+.resultRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.resultCardWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* 3D 뒤집기 */
+.resultCard {
+  width: 100%;
+  aspect-ratio: 3 / 5;
+  perspective: 900px;
+  cursor: default;
+  position: relative;
+}
+
+.resultCard > * {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.resultCardBack {
+  background: linear-gradient(145deg, #1e0f45, #2d1265);
+  border: 2px solid rgba(201, 162, 39, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(0deg);
+}
+
+.resultCardBackPattern {
+  font-size: 32px;
+  color: rgba(201, 162, 39, 0.3);
+}
+
+.resultCardFront {
+  background: linear-gradient(145deg, #1e1050, #2a1560);
+  border: 2px solid var(--card-color, var(--gold));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--card-color, var(--gold)) 30%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 6px;
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+.resultCardFlipped .resultCardBack {
+  transform: rotateY(-180deg);
+}
+
+.resultCardFlipped .resultCardFront {
+  transform: rotateY(0deg);
+}
+
+.reversed {
+  /* 역방향 카드는 약간 다른 배경 */
+  background: linear-gradient(145deg, #200e30, #2a0e3d) !important;
+}
+
+.resultCardSymbol {
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+.resultCardEmoji {
+  font-size: 28px;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.2));
+}
+
+.resultCardName {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  color: var(--card-color, var(--gold-light));
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  text-shadow: 0 0 8px var(--card-color, transparent);
+}
+
+.resultCardNameEn {
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+}
+
+.reversedBadge {
+  font-size: 0.55rem;
+  color: #f87171;
+  border: 1px solid #f87171;
+  border-radius: 4px;
+  padding: 1px 5px;
+  letter-spacing: 0.05em;
+}
+
+.resultCardKeywords {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.keyword {
+  font-size: 0.55rem;
+  color: var(--text-sub);
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.positionLabel {
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  font-family: 'Cinzel', serif;
+}
+
+.cardMessage {
+  font-size: 0.72rem;
+  color: var(--text-sub);
+  line-height: 1.7;
+  text-align: center;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  width: 100%;
+  margin: 0;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.resetBtn {
+  padding: 10px 28px;
+  border-radius: 50px;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background: transparent;
+  color: var(--text-sub);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.resetBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
