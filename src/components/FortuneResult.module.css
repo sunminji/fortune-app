@@ -108,6 +108,7 @@
 
 .categoryCardWrapper {
   display: flex;
+  align-items: stretch;
 }
 
 /* 행운 섹션 */

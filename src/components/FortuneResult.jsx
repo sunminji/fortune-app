@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useRef, useEffect, useState } from 'react'
 import { getStarSign, getKoreanZodiac } from '../utils/zodiac'
 import { getTodayFortune } from '../utils/fortune'
 import { MainFortuneCard, CategoryCard } from './TarotCard'
@@ -16,6 +16,14 @@ const ELEMENT_COLORS = {
 }
 
 export default function FortuneResult({ birthdate, onReset }) {
+  const cardRefs = useRef([])
+  const [cardHeight, setCardHeight] = useState(null)
+
+  useEffect(() => {
+    const heights = cardRefs.current.map(el => el?.offsetHeight ?? 0)
+    setCardHeight(Math.max(...heights))
+  }, [])
+
   const { starSign, koreanZodiac, fortune } = useMemo(() => {
     const d = new Date(birthdate)
     const year = d.getFullYear()
@@ -76,8 +84,13 @@ export default function FortuneResult({ birthdate, onReset }) {
           { key: 'money', delay: 0.2 },
           { key: 'health', delay: 0.3 },
           { key: 'career', delay: 0.4 },
-        ].map(({ key, delay }) => (
-          <div key={key} className={styles.categoryCardWrapper}>
+        ].map(({ key, delay }, i) => (
+          <div
+            key={key}
+            className={styles.categoryCardWrapper}
+            ref={el => cardRefs.current[i] = el}
+            style={cardHeight ? { height: cardHeight } : {}}
+          >
             <CategoryCard
               category={key}
               fortune={fortune[key]}
