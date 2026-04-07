@@ -15,7 +15,7 @@ const ELEMENT_COLORS = {
   물: '#5098ff',
 }
 
-export default function FortuneResult({ birthdate, onReset }) {
+export default function FortuneResult({ birthdate, onReset, isShared }) {
   const cardRefs = useRef([])
   const [cardHeight, setCardHeight] = useState(null)
   const [copied, setCopied] = useState(false)
@@ -76,12 +76,11 @@ export default function FortuneResult({ birthdate, onReset }) {
         <div className={styles.badge}>
           <span className={styles.badgeEmoji}>{starSign.emoji}</span>
           <div className={styles.badgeInfo}>
-            <span className={styles.badgeName}>{starSign.name}</span>
-            <span
-              className={styles.badgeSub}
-              style={{ color: ELEMENT_COLORS[starSign.element] }}
-            >
-              {starSign.element} · {starSign.symbol}
+            <span className={styles.badgeName}>
+              {starSign.name.replace('자리', '')} {starSign.symbol}
+            </span>
+            <span className={styles.badgeSub} style={{ color: ELEMENT_COLORS[starSign.element] }}>
+              {starSign.trait}
             </span>
           </div>
         </div>
@@ -89,7 +88,7 @@ export default function FortuneResult({ birthdate, onReset }) {
         <div className={styles.badge}>
           <span className={styles.badgeEmoji}>{koreanZodiac.emoji}</span>
           <div className={styles.badgeInfo}>
-            <span className={styles.badgeName}>{koreanZodiac.name}띠</span>
+            <span className={styles.badgeName}>{koreanZodiac.name}</span>
             <span className={styles.badgeSub}>{koreanZodiac.trait}</span>
           </div>
         </div>
@@ -148,13 +147,20 @@ export default function FortuneResult({ birthdate, onReset }) {
           birthdate={birthdate}
           initialSelected={tarotSelected}
           onSelectionChange={handleTarotSelection}
+          isShared={isShared}
         />
       </div>
 
-      {/* 공유 버튼 */}
-      <button className={styles.shareButton} onClick={handleShare}>
-        {copied ? '✅ 링크가 복사됐어요!' : '🔗 운세 공유하기'}
-      </button>
+      {/* 공유 / 내 운세 확인 버튼 */}
+      {isShared ? (
+        <button className={styles.shareButton} onClick={onReset}>
+          ✨ 내 운세도 확인하기
+        </button>
+      ) : (
+        <button className={styles.shareButton} onClick={handleShare}>
+          {copied ? '✅ 링크가 복사됐어요!' : '🔗 운세 공유하기'}
+        </button>
+      )}
 
       {/* 다시 보기 버튼 */}
       <button className={styles.resetButton} onClick={onReset}>

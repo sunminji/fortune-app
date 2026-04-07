@@ -6,6 +6,7 @@ import styles from './App.module.css'
 
 export default function App() {
   const [birthdate, setBirthdate] = useState(null)
+  const [isShared] = useState(() => new URLSearchParams(window.location.search).has('birth'))
 
   // URL 쿼리 파라미터에서 생년월일 자동 로드
   useEffect(() => {
@@ -28,10 +29,14 @@ export default function App() {
           {!birthdate ? (
             <BirthInput onSubmit={setBirthdate} />
           ) : (
-            <FortuneResult birthdate={birthdate} onReset={() => {
-              setBirthdate(null)
-              window.history.replaceState({}, '', window.location.pathname)
-            }} />
+            <FortuneResult
+              birthdate={birthdate}
+              isShared={isShared}
+              onReset={() => {
+                setBirthdate(null)
+                window.history.replaceState({}, '', window.location.pathname)
+              }}
+            />
           )}
         </main>
       </div>

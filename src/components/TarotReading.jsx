@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { getShuffledDeck, POSITIONS } from '../utils/tarot'
 import styles from './TarotReading.module.css'
 
-export default function TarotReading({ birthdate, initialSelected, onSelectionChange }) {
+export default function TarotReading({ birthdate, initialSelected, onSelectionChange, isShared }) {
   const [phase, setPhase] = useState(initialSelected ? 'result' : 'intro')
   const [selected, setSelected] = useState(initialSelected ?? [])
   const [revealed, setRevealed] = useState(initialSelected ? [0, 1, 2] : [])
@@ -136,9 +136,11 @@ export default function TarotReading({ birthdate, initialSelected, onSelectionCh
         ))}
       </div>
 
-      <button className={styles.resetBtn} onClick={handleReset}>
-        🔄 다시 뽑기
-      </button>
+      {!isShared && (
+        <button className={styles.resetBtn} onClick={handleReset}>
+          🔄 다시 뽑기
+        </button>
+      )}
     </div>
   )
 }
