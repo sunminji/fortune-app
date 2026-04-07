@@ -1,21 +1,30 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { getShuffledDeck, POSITIONS } from '../utils/tarot'
 import styles from './TarotReading.module.css'
 
-export default function TarotReading({ birthdate }) {
-  const [phase, setPhase] = useState('intro') // intro | picking | result
-  const [selected, setSelected] = useState([]) // 선택된 카드 인덱스 배열
-  const [revealed, setRevealed] = useState([]) // 뒤집힌 카드 인덱스
+export default function TarotReading({ birthdate, initialSelected, onSelectionChange }) {
+  const [phase, setPhase] = useState(initialSelected ? 'result' : 'intro')
+  const [selected, setSelected] = useState(initialSelected ?? [])
+  const [revealed, setRevealed] = useState(initialSelected ? [0, 1, 2] : [])
 
   const deck = useMemo(() => getShuffledDeck(birthdate), [birthdate])
-  // 스프레드에 보여줄 카드 7장
   const spread = useMemo(() => deck.slice(0, 7), [deck])
+
+  // initialSelected로 시작한 경우 바로 결과 표시
+  useEffect(() => {
+    if (initialSelected?.length === 3) {
+      setPhase('result')
+      setSelected(initialSelected)
+      setRevealed([0, 1, 2])
+    }
+  }, [])
 
   function handlePickCard(idx) {
     if (selected.includes(idx) || selected.length >= 3) return
     const next = [...selected, idx]
     setSelected(next)
     if (next.length === 3) {
+      onSelectionChange?.(next)
       setTimeout(() => {
         setPhase('result')
         revealSequentially()
@@ -34,6 +43,7 @@ export default function TarotReading({ birthdate }) {
     setPhase('intro')
     setSelected([])
     setRevealed([])
+    onSelectionChange?.(null)
   }
 
   if (phase === 'intro') {
@@ -88,14 +98,12 @@ export default function TarotReading({ birthdate }) {
     )
   }
 
-  // result phase
   const pickedCards = selected.map(idx => spread[idx])
 
   return (
     <div className={styles.result}>
       <p className={styles.resultTitle}>✦ 타로가 전하는 메시지 ✦</p>
 
-      {/* 카드 3장 */}
       <div className={styles.resultRow}>
         {pickedCards.map((card, i) => (
           <div key={i} className={styles.resultCardWrap}>
@@ -117,7 +125,6 @@ export default function TarotReading({ birthdate }) {
         ))}
       </div>
 
-      {/* 메시지 — 카드 아래에 별도로 */}
       <div className={styles.messageList}>
         {pickedCards.map((card, i) => revealed.includes(i) && (
           <div key={i} className={styles.messageItem}>

@@ -19,9 +19,19 @@ export default function FortuneResult({ birthdate, onReset }) {
   const cardRefs = useRef([])
   const [cardHeight, setCardHeight] = useState(null)
   const [copied, setCopied] = useState(false)
+  const [tarotSelected, setTarotSelected] = useState(() => {
+    const params = new URLSearchParams(window.location.search)
+    const t = params.get('tarot')
+    return t ? t.split(',').map(Number) : null
+  })
+
+  const handleTarotSelection = useCallback((indices) => {
+    setTarotSelected(indices)
+  }, [])
 
   const handleShare = useCallback(async () => {
-    const url = `${window.location.origin}${window.location.pathname}?birth=${birthdate}`
+    let url = `${window.location.origin}${window.location.pathname}?birth=${birthdate}`
+    if (tarotSelected?.length === 3) url += `&tarot=${tarotSelected.join(',')}`
     const shareData = {
       title: '오늘의 운세',
       text: `✨ 썬이 전하는 오늘의 운세를 확인해보세요!`,
@@ -34,7 +44,7 @@ export default function FortuneResult({ birthdate, onReset }) {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     }
-  }, [birthdate])
+  }, [birthdate, tarotSelected])
 
   useEffect(() => {
     const heights = cardRefs.current.map(el => el?.offsetHeight ?? 0)
@@ -134,7 +144,11 @@ export default function FortuneResult({ birthdate, onReset }) {
           <span>타로 카드 리딩</span>
           <span className={styles.sectionHint}>카드 3장을 뽑아 운명의 메시지를 확인하세요</span>
         </div>
-        <TarotReading birthdate={birthdate} />
+        <TarotReading
+          birthdate={birthdate}
+          initialSelected={tarotSelected}
+          onSelectionChange={handleTarotSelection}
+        />
       </div>
 
       {/* 공유 버튼 */}
