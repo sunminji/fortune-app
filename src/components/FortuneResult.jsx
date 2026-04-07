@@ -1,4 +1,4 @@
-import { useMemo, useRef, useEffect, useState } from 'react'
+import { useMemo, useRef, useEffect, useState, useCallback } from 'react'
 import { getStarSign, getKoreanZodiac } from '../utils/zodiac'
 import { getTodayFortune } from '../utils/fortune'
 import { MainFortuneCard, CategoryCard } from './TarotCard'
@@ -18,6 +18,23 @@ const ELEMENT_COLORS = {
 export default function FortuneResult({ birthdate, onReset }) {
   const cardRefs = useRef([])
   const [cardHeight, setCardHeight] = useState(null)
+  const [copied, setCopied] = useState(false)
+
+  const handleShare = useCallback(async () => {
+    const url = `${window.location.origin}${window.location.pathname}?birth=${birthdate}`
+    const shareData = {
+      title: '오늘의 운세',
+      text: `✨ 썬이 전하는 오늘의 운세를 확인해보세요!`,
+      url,
+    }
+    if (navigator.share) {
+      try { await navigator.share(shareData) } catch {}
+    } else {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }, [birthdate])
 
   useEffect(() => {
     const heights = cardRefs.current.map(el => el?.offsetHeight ?? 0)
@@ -119,6 +136,11 @@ export default function FortuneResult({ birthdate, onReset }) {
         </div>
         <TarotReading birthdate={birthdate} />
       </div>
+
+      {/* 공유 버튼 */}
+      <button className={styles.shareButton} onClick={handleShare}>
+        {copied ? '✅ 링크가 복사됐어요!' : '🔗 운세 공유하기'}
+      </button>
 
       {/* 다시 보기 버튼 */}
       <button className={styles.resetButton} onClick={onReset}>

@@ -184,6 +184,27 @@
   gap: 16px;
 }
 
+/* 공유 버튼 */
+.shareButton {
+  width: 100%;
+  max-width: 320px;
+  padding: 14px;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #f472b6, #a78bfa);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(244, 114, 182, 0.35);
+}
+
+.shareButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(244, 114, 182, 0.5);
+}
+
 /* 리셋 버튼 */
 .resetButton {
   background: transparent;
