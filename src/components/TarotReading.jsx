@@ -94,43 +94,48 @@ export default function TarotReading({ birthdate }) {
   return (
     <div className={styles.result}>
       <p className={styles.resultTitle}>✦ 타로가 전하는 메시지 ✦</p>
+
+      {/* 카드 3장 */}
       <div className={styles.resultRow}>
-        {pickedCards.map((card, i) => {
-          const isRevealed = revealed.includes(i)
-          return (
-            <div key={i} className={styles.resultCardWrap}>
-              <div className={`${styles.resultCard} ${isRevealed ? styles.resultCardFlipped : ''}`}>
-                {/* 뒷면 */}
-                <div className={styles.resultCardBack}>
-                  <div className={styles.resultCardBackPattern}>✦</div>
-                </div>
-                {/* 앞면 */}
-                <div
-                  className={`${styles.resultCardFront} ${card.isReversed ? styles.reversed : ''}`}
-                  style={{ '--card-color': card.color }}
-                >
-                  <div className={styles.resultCardSymbol}>{card.symbol}</div>
-                  <div className={styles.resultCardEmoji}>{card.emoji}</div>
-                  <div className={styles.resultCardName}>{card.name}</div>
-                  <div className={styles.resultCardNameEn}>{card.nameEn}</div>
-                  {card.isReversed && <div className={styles.reversedBadge}>역방향</div>}
-                  <div className={styles.resultCardKeywords}>
-                    {card.keywords.map(k => (
-                      <span key={k} className={styles.keyword}>{k}</span>
-                    ))}
-                  </div>
+        {pickedCards.map((card, i) => (
+          <div key={i} className={styles.resultCardWrap}>
+            <div className={`${styles.resultCard} ${revealed.includes(i) ? styles.resultCardFlipped : ''}`}>
+              <div className={styles.resultCardBack}>
+                <div className={styles.resultCardBackPattern}>✦</div>
+              </div>
+              <div
+                className={`${styles.resultCardFront} ${card.isReversed ? styles.reversed : ''}`}
+                style={{ '--card-color': card.color }}
+              >
+                <div className={styles.resultCardSymbol}>{card.symbol}</div>
+                <div className={styles.resultCardEmoji}>{card.emoji}</div>
+                <div className={styles.resultCardName}>{card.name}</div>
+                <div className={styles.resultCardNameEn}>{card.nameEn}</div>
+                {card.isReversed && <div className={styles.reversedBadge}>역방향</div>}
+                <div className={styles.resultCardKeywords}>
+                  {card.keywords.map(k => (
+                    <span key={k} className={styles.keyword}>{k}</span>
+                  ))}
                 </div>
               </div>
-              <div className={styles.positionLabel}>{POSITIONS[i]}</div>
-              {isRevealed && (
-                <p className={styles.cardMessage}>
-                  {card.isReversed ? card.reversed : card.upright}
-                </p>
-              )}
             </div>
-          )
-        })}
+            <div className={styles.positionLabel}>{POSITIONS[i]}</div>
+          </div>
+        ))}
       </div>
+
+      {/* 메시지 — 카드 아래에 별도로 */}
+      <div className={styles.messageList}>
+        {pickedCards.map((card, i) => revealed.includes(i) && (
+          <div key={i} className={styles.messageItem}>
+            <span className={styles.messagePosition}>{POSITIONS[i]}</span>
+            <p className={styles.cardMessage}>
+              {card.isReversed ? card.reversed : card.upright}
+            </p>
+          </div>
+        ))}
+      </div>
+
       <button className={styles.resetBtn} onClick={handleReset}>
         🔄 다시 뽑기
       </button>

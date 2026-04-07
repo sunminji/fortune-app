@@ -296,16 +296,42 @@
   font-weight: 600;
 }
 
+.messageList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.messageItem {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--lavender-light);
+  border-radius: 12px;
+  padding: 12px 14px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.messagePosition {
+  font-family: 'Gowun Batang', 'Noto Serif KR', serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f472b6, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  padding-top: 1px;
+  min-width: 28px;
+}
+
 .cardMessage {
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   color: var(--text-mid);
   line-height: 1.7;
-  text-align: center;
   word-break: keep-all;
-  overflow-wrap: break-word;
-  width: 100%;
   margin: 0;
-  animation: fadeInUp 0.5s ease-out;
 }
 
 .resetBtn {
