@@ -1,11 +1,9 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import styles from './BirthInput.module.css'
 
 export default function BirthInput({ onSubmit }) {
   const [text, setText] = useState('')
   const [error, setError] = useState('')
-  const datePickerRef = useRef(null)
-
   function handleTextChange(e) {
     const digits = e.target.value.replace(/\D/g, '').slice(0, 8)
     let formatted = digits
@@ -18,10 +16,6 @@ export default function BirthInput({ onSubmit }) {
   function handleDatePick(e) {
     setText(e.target.value)
     setError('')
-  }
-
-  function handleCalendarClick() {
-    datePickerRef.current.showPicker()
   }
 
   function handleSubmit(e) {
@@ -60,22 +54,17 @@ export default function BirthInput({ onSubmit }) {
             className={styles.input}
             placeholder="YYYY-MM-DD"
           />
-          <button
-            type="button"
-            className={styles.calendarBtn}
-            onClick={handleCalendarClick}
-            aria-label="달력으로 선택"
-          >
+          <div className={styles.calendarBtn}>
             📅
-          </button>
-          <input
-            type="date"
-            ref={datePickerRef}
-            value={text}
-            onChange={handleDatePick}
-            max={new Date().toISOString().split('T')[0]}
-            className={styles.hiddenDateInput}
-          />
+            <input
+              type="date"
+              ref={datePickerRef}
+              value={text}
+              onChange={handleDatePick}
+              max={new Date().toISOString().split('T')[0]}
+              className={styles.hiddenDateInput}
+            />
+          </div>
         </div>
         {error && <p className={styles.error}>{error}</p>}
         <button type="submit" className={styles.button}>
