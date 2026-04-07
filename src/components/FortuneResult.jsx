@@ -76,7 +76,6 @@ export default function FortuneResult({ birthdate, onReset }) {
       {/* 카테고리 카드 4개 */}
       <div className={styles.sectionTitle}>
         <span>카테고리별 운세</span>
-        <span className={styles.sectionHint}>카드를 탭하여 확인하세요</span>
       </div>
       <div className={styles.categoryGrid}>
         {[
