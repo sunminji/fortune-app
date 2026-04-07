@@ -3,7 +3,6 @@
   animation-delay: var(--delay, 0s);
   position: relative;
   width: 100%;
-  height: 100%;
 }
 
 .mainWrapper {
@@ -24,29 +23,12 @@
 /* 카드 앞면 */
 .cardFront {
   width: 100%;
-  height: 100%;
   box-sizing: border-box;
   background: white;
   border: 1.5px solid var(--accent, var(--lavender-dim));
   box-shadow: var(--shadow-card);
   gap: 10px;
   text-align: center;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--lavender-dim) transparent;
-}
-
-.cardFront::-webkit-scrollbar {
-  width: 4px;
-}
-
-.cardFront::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.cardFront::-webkit-scrollbar-thumb {
-  background: var(--lavender-dim);
-  border-radius: 4px;
 }
 
 .mainFront {
