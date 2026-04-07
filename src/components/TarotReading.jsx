@@ -107,16 +107,9 @@ export default function TarotReading({ birthdate }) {
                 className={`${styles.resultCardFront} ${card.isReversed ? styles.reversed : ''}`}
                 style={{ '--card-color': card.color }}
               >
-                <div className={styles.resultCardSymbol}>{card.symbol}</div>
                 <div className={styles.resultCardEmoji}>{card.emoji}</div>
                 <div className={styles.resultCardName}>{card.name}</div>
-                <div className={styles.resultCardNameEn}>{card.nameEn}</div>
                 {card.isReversed && <div className={styles.reversedBadge}>역방향</div>}
-                <div className={styles.resultCardKeywords}>
-                  {card.keywords.map(k => (
-                    <span key={k} className={styles.keyword}>{k}</span>
-                  ))}
-                </div>
               </div>
             </div>
             <div className={styles.positionLabel}>{POSITIONS[i]}</div>

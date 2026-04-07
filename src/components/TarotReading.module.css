@@ -221,10 +221,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 10px 6px;
+  gap: 6px;
+  padding: 12px 8px;
   text-align: center;
   transform: rotateY(180deg);
+  overflow: hidden;
 }
 
 .resultCardFlipped .resultCardBack {
@@ -245,20 +246,15 @@
 }
 
 .resultCardEmoji {
-  font-size: 26px;
+  font-size: 30px;
 }
 
 .resultCardName {
   font-family: 'Gowun Batang', 'Noto Serif KR', serif;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: var(--card-color, var(--text-mid));
-  letter-spacing: 0.04em;
-  font-weight: 600;
-}
-
-.resultCardNameEn {
-  font-size: 0.52rem;
-  color: var(--text-soft);
+  letter-spacing: 0.03em;
+  font-weight: 700;
 }
 
 .reversedBadge {
