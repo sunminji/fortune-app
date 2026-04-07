@@ -2,32 +2,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 24px;
+  padding: 40px 24px;
   animation: fadeInUp 0.6s ease-out;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .crystal {
   font-size: 72px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   animation: float 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(201, 162, 39, 0.6));
+  filter: drop-shadow(0 4px 16px rgba(167, 139, 250, 0.4));
 }
 
 .title {
   font-family: 'Cinzel', serif;
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  color: var(--gold-light);
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
+  color: var(--text-dark);
   text-align: center;
-  margin-bottom: 12px;
-  text-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
 }
 
 .subtitle {
-  color: var(--text-sub);
+  color: var(--text-soft);
   text-align: center;
   line-height: 1.8;
-  margin-bottom: 40px;
-  font-size: 0.95rem;
+  margin-bottom: 36px;
+  font-size: 0.9rem;
 }
 
 .form {
@@ -36,7 +38,6 @@
   align-items: center;
   gap: 16px;
   width: 100%;
-  max-width: 320px;
 }
 
 .inputWrapper {
@@ -44,56 +45,40 @@
   position: relative;
   display: flex;
   border-radius: 16px;
-  box-shadow: 0 0 24px rgba(201, 162, 39, 0.2), 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
+  border: 2px solid var(--lavender-dim);
+  transition: border-color 0.2s;
 }
 
-.inputWrapper::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, var(--gold), var(--purple-mid), var(--gold));
-  background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
-  z-index: 0;
+.inputWrapper:focus-within {
+  border-color: var(--lavender);
 }
 
 .input {
-  position: relative;
-  z-index: 1;
   flex: 1;
   padding: 16px 20px;
-  border-radius: 16px 0 0 16px;
   border: none;
-  background: linear-gradient(135deg, #1e1040, #160d35);
-  color: #fff;
-  font-size: 1.15rem;
+  background: white;
+  color: var(--text-dark);
+  font-size: 1.1rem;
   font-weight: 500;
   text-align: center;
   outline: none;
   letter-spacing: 0.08em;
-  box-sizing: border-box;
+  min-width: 0;
 }
 
 .input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 1rem;
-}
-
-.input:focus {
-  background: linear-gradient(135deg, #261550, #1a1040);
-  box-shadow: inset 0 0 12px rgba(201, 162, 39, 0.1);
+  color: var(--text-dim);
+  font-size: 0.95rem;
 }
 
 .calendarBtn {
-  position: relative;
-  z-index: 1;
   padding: 0 18px;
-  border-radius: 0 16px 16px 0;
   border: none;
-  border-left: 1px solid rgba(201, 162, 39, 0.3);
-  background: linear-gradient(135deg, #261550, #1a1040);
+  border-left: 1px solid var(--lavender-dim);
+  background: var(--lavender-light);
   font-size: 1.3rem;
   cursor: pointer;
   transition: background 0.2s;
@@ -102,7 +87,7 @@
 }
 
 .calendarBtn:hover {
-  background: rgba(201, 162, 39, 0.2);
+  background: var(--lavender-dim);
 }
 
 .hiddenDateInput {
@@ -114,28 +99,29 @@
 }
 
 .error {
-  color: #ff7070;
+  color: #f43f5e;
   font-size: 0.85rem;
   text-align: center;
 }
 
 .button {
   position: relative;
-  padding: 14px 48px;
+  padding: 14px 52px;
   border-radius: 50px;
-  border: 2px solid var(--gold);
-  background: transparent;
-  color: var(--gold-light);
+  border: none;
+  background: linear-gradient(135deg, #f472b6, #a78bfa);
+  color: white;
   font-size: 1rem;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(244, 114, 182, 0.35);
   animation: glow 2.5s ease-in-out infinite;
 }
 
 .button:hover {
-  background: rgba(201, 162, 39, 0.15);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201, 162, 39, 0.3);
+  box-shadow: 0 8px 28px rgba(244, 114, 182, 0.5);
 }
 
 .button:active {

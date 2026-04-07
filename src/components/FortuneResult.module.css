@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  padding: 24px 16px 60px;
+  gap: 24px;
+  padding: 16px 16px 60px;
   max-width: 480px;
   margin: 0 auto;
   animation: fadeInUp 0.5s ease-out;
+  width: 100%;
 }
 
 .dateHeader {
@@ -19,13 +20,13 @@
 .dateText {
   font-family: 'Cinzel', serif;
   font-size: 1rem;
-  color: var(--gold);
+  color: var(--rose);
   letter-spacing: 0.1em;
 }
 
 .dateSub {
   font-size: 0.8rem;
-  color: var(--text-dim);
+  color: var(--text-soft);
   letter-spacing: 0.15em;
 }
 
@@ -34,12 +35,13 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(201, 162, 39, 0.2);
-  border-radius: 16px;
-  padding: 16px 24px;
+  background: white;
+  border: 1px solid var(--lavender-dim);
+  border-radius: 20px;
+  padding: 16px 20px;
   width: 100%;
   justify-content: center;
+  box-shadow: var(--shadow-soft);
 }
 
 .badge {
@@ -49,7 +51,7 @@
 }
 
 .badgeEmoji {
-  font-size: 32px;
+  font-size: 30px;
 }
 
 .badgeInfo {
@@ -60,24 +62,24 @@
 
 .badgeName {
   font-size: 0.95rem;
-  color: var(--text-main);
+  color: var(--text-dark);
   font-weight: 600;
 }
 
 .badgeSub {
   font-size: 0.75rem;
-  color: var(--text-dim);
+  color: var(--text-soft);
 }
 
 .badgeDivider {
-  color: var(--gold-dim);
+  color: var(--lavender-dim);
   font-size: 1.2rem;
 }
 
 /* 메인 카드 영역 */
 .mainCardSection {
   width: 100%;
-  padding-bottom: 40px;
+  padding-bottom: 8px;
 }
 
 /* 섹션 타이틀 */
@@ -87,13 +89,13 @@
   align-items: center;
   gap: 4px;
   font-size: 0.95rem;
-  color: var(--text-sub);
-  letter-spacing: 0.1em;
+  color: var(--text-mid);
+  letter-spacing: 0.08em;
 }
 
 .sectionHint {
   font-size: 0.75rem;
-  color: var(--text-dim);
+  color: var(--text-soft);
 }
 
 /* 카테고리 카드 그리드 */
@@ -101,9 +103,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
-  height: 600px;
+  height: 560px;
 }
 
 .categoryCardWrapper {
@@ -114,26 +116,29 @@
 /* 행운 섹션 */
 .luckySection {
   width: 100%;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(201, 162, 39, 0.2);
-  border-radius: 18px;
-  padding: 24px 20px;
+  background: white;
+  border: 1px solid var(--lavender-dim);
+  border-radius: 20px;
+  padding: 24px 16px;
+  box-shadow: var(--shadow-soft);
 }
 
 .luckyTitle {
   font-family: 'Cinzel', serif;
   font-size: 0.95rem;
-  color: var(--gold);
+  background: linear-gradient(135deg, #f472b6, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-align: center;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   margin-bottom: 20px;
-  text-shadow: 0 0 10px rgba(201, 162, 39, 0.4);
 }
 
 .luckyGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 .luckyGrid > :last-child:nth-child(odd) {
@@ -147,35 +152,35 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  background: rgba(201, 162, 39, 0.05);
-  border: 1px solid rgba(201, 162, 39, 0.15);
-  border-radius: 12px;
-  padding: 14px 12px;
+  background: linear-gradient(135deg, var(--rose-light), var(--lavender-light));
+  border-radius: 14px;
+  padding: 14px 10px;
 }
 
 .luckyIcon {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .luckyLabel {
-  font-size: 0.7rem;
-  color: var(--text-dim);
-  letter-spacing: 0.05em;
+  font-size: 0.68rem;
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
 }
 
 .luckyValue {
-  font-size: 0.95rem;
-  color: var(--gold-light);
-  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-weight: 700;
 }
 
 /* 타로 리딩 섹션 */
 .tarotSection {
   width: 100%;
-  background: rgba(167, 139, 250, 0.04);
-  border: 1px solid rgba(167, 139, 250, 0.2);
-  border-radius: 18px;
-  padding: 20px 12px;
+  background: white;
+  border: 1px solid var(--lavender-dim);
+  border-radius: 20px;
+  padding: 20px 14px;
+  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -184,17 +189,17 @@
 /* 리셋 버튼 */
 .resetButton {
   background: transparent;
-  border: 1px solid var(--text-dim);
+  border: 1.5px solid var(--lavender-dim);
   border-radius: 50px;
   padding: 10px 28px;
-  color: var(--text-dim);
+  color: var(--text-soft);
   font-size: 0.85rem;
   transition: all 0.3s;
   letter-spacing: 0.05em;
 }
 
 .resetButton:hover {
-  border-color: var(--text-sub);
-  color: var(--text-sub);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--lavender);
+  color: var(--text-mid);
+  background: var(--lavender-light);
 }

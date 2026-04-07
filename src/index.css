@@ -5,18 +5,39 @@
 }
 
 :root {
-  --bg-deep: #0d0520;
-  --bg-mid: #1a0a3d;
-  --bg-card: #1e0f45;
-  --gold: #c9a227;
-  --gold-light: #f0d060;
-  --gold-dim: #8a6d15;
-  --purple-light: #c4a8ff;
-  --purple-mid: #7c5cbf;
-  --text-main: #f0e6ff;
-  --text-sub: #a98fd4;
-  --text-dim: #6b5090;
-  --star-color: rgba(255, 255, 255, 0.8);
+  --bg: #fdf6ff;
+  --bg-card: #ffffff;
+  --bg-soft: #f8f0ff;
+
+  --rose: #f472b6;
+  --rose-light: #fce7f3;
+  --rose-dim: #fbcfe8;
+
+  --lavender: #a78bfa;
+  --lavender-light: #ede9fe;
+  --lavender-dim: #ddd6fe;
+
+  --mint: #6ee7b7;
+  --peach: #fdba74;
+
+  --text-dark: #3b1d6b;
+  --text-mid: #7c5cbf;
+  --text-soft: #b8a0d8;
+  --text-dim: #d8c8f0;
+
+  --shadow-soft: 0 4px 24px rgba(167, 139, 250, 0.15);
+  --shadow-card: 0 8px 32px rgba(167, 139, 250, 0.18);
+  --shadow-hover: 0 12px 40px rgba(167, 139, 250, 0.28);
+
+  /* 하위 호환 */
+  --gold: #e879a0;
+  --gold-light: #f9a8d4;
+  --gold-dim: #fbcfe8;
+  --purple-mid: #a78bfa;
+  --bg-mid: #f8f0ff;
+  --bg-deep: #fdf6ff;
+  --text-main: #3b1d6b;
+  --text-sub: #7c5cbf;
 }
 
 html {
@@ -25,16 +46,16 @@ html {
 
 body {
   font-family: 'Noto Serif KR', serif;
-  background: var(--bg-deep);
-  color: var(--text-main);
+  background: linear-gradient(160deg, #fdf4ff 0%, #fff0f8 50%, #f0f4ff 100%);
+  background-attachment: fixed;
+  color: var(--text-dark);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* 별빛 배경 */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.7; transform: scale(1.2); }
 }
 
 @keyframes float {
@@ -48,13 +69,13 @@ body {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes glow {
-  0%, 100% { box-shadow: 0 0 12px rgba(201, 162, 39, 0.3); }
-  50% { box-shadow: 0 0 28px rgba(201, 162, 39, 0.7), 0 0 50px rgba(201, 162, 39, 0.2); }
+  0%, 100% { box-shadow: 0 0 12px rgba(244, 114, 182, 0.25); }
+  50% { box-shadow: 0 0 28px rgba(244, 114, 182, 0.5); }
 }
 
 button {

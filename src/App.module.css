@@ -1,7 +1,6 @@
 .app {
   min-height: 100vh;
   position: relative;
-  background: radial-gradient(ellipse at top, #1a0a3d 0%, #0d0520 60%);
 }
 
 .content {
@@ -15,38 +14,37 @@
 .header {
   position: relative;
   text-align: center;
-  padding: 40px 20px 20px;
-  overflow: hidden;
+  padding: 48px 20px 24px;
 }
 
 .headerGlow {
   position: absolute;
-  top: -60px;
+  top: -40px;
   left: 50%;
   transform: translateX(-50%);
-  width: 300px;
-  height: 200px;
-  background: radial-gradient(ellipse, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
+  width: 280px;
+  height: 180px;
+  background: radial-gradient(ellipse, rgba(244, 114, 182, 0.12) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .title {
   font-family: 'Cinzel', serif;
   font-size: clamp(1.6rem, 5vw, 2.4rem);
-  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-light));
+  background: linear-gradient(135deg, #f472b6, #a78bfa, #f472b6);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer 4s linear infinite;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   letter-spacing: 0.1em;
 }
 
 .subtitle {
   font-size: 1.1rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-mid);
   letter-spacing: 0.15em;
 }
 
