@@ -195,26 +195,26 @@ export default function FortuneResult({ birthdate, onReset, isShared }) {
         </div>
       )}
 
-      {/* 이미지 저장 + 다른 날짜로 보기 */}
+      {/* 이미지 저장 + 공유 */}
       <div className={styles.buttonRow}>
         <button className={styles.saveImageButton} onClick={handleSaveImage} disabled={saving}>
           {saving ? '⏳ 저장 중...' : '📸 이미지 저장'}
         </button>
-        <button className={styles.resetButton} onClick={onReset}>
-          🔄 다른 날짜로 보기
-        </button>
+        {isShared ? (
+          <button className={styles.shareButton} onClick={onReset}>
+            ✨ 내 운세도 확인하기
+          </button>
+        ) : (
+          <button className={styles.shareButton} onClick={handleShare}>
+            {copied ? '✅ 링크가 복사됐어요!' : '🔗 운세 공유하기'}
+          </button>
+        )}
       </div>
 
-      {/* 공유 / 내 운세 확인 버튼 */}
-      {isShared ? (
-        <button className={styles.shareButton} onClick={onReset}>
-          ✨ 내 운세도 확인하기
-        </button>
-      ) : (
-        <button className={styles.shareButton} onClick={handleShare}>
-          {copied ? '✅ 링크가 복사됐어요!' : '🔗 운세 공유하기'}
-        </button>
-      )}
+      {/* 다른 날짜로 보기 */}
+      <button className={styles.resetButton} onClick={onReset}>
+        🔄 다른 날짜로 보기
+      </button>
     </div>
   )
 }
