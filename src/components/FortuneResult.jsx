@@ -162,21 +162,38 @@ export default function FortuneResult({ birthdate, onReset, isShared }) {
         </div>
       </div>
 
-      {/* 타로 카드 리딩 */}
-      <div className={styles.tarotSection}>
-        <div className={styles.sectionTitle}>
-          <span>타로 카드 리딩</span>
-          <span className={styles.sectionHint}>카드 3장을 뽑아 운명의 메시지를 확인하세요</span>
+      {/* 타로 카드 리딩 (뽑은 경우에만 캡처 영역에 포함) */}
+      {tarotSelected?.length === 3 && (
+        <div className={styles.tarotSection}>
+          <div className={styles.sectionTitle}>
+            <span>타로 카드 리딩</span>
+          </div>
+          <TarotReading
+            birthdate={birthdate}
+            initialSelected={tarotSelected}
+            onSelectionChange={handleTarotSelection}
+            isShared={isShared}
+          />
         </div>
-        <TarotReading
-          birthdate={birthdate}
-          initialSelected={tarotSelected}
-          onSelectionChange={handleTarotSelection}
-          isShared={isShared}
-        />
-      </div>
+      )}
 
       </div>{/* captureArea 끝 */}
+
+      {/* 타로 카드 리딩 (아직 뽑지 않은 경우) */}
+      {!tarotSelected?.length && (
+        <div className={styles.tarotSection}>
+          <div className={styles.sectionTitle}>
+            <span>타로 카드 리딩</span>
+            <span className={styles.sectionHint}>카드 3장을 뽑아 운명의 메시지를 확인하세요</span>
+          </div>
+          <TarotReading
+            birthdate={birthdate}
+            initialSelected={tarotSelected}
+            onSelectionChange={handleTarotSelection}
+            isShared={isShared}
+          />
+        </div>
+      )}
 
       {/* 이미지 저장 버튼 */}
       <button className={styles.saveImageButton} onClick={handleSaveImage} disabled={saving}>
