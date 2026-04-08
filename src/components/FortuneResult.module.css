@@ -197,9 +197,6 @@
   align-items: center;
   gap: 24px;
   width: 100%;
-  padding: 16px;
-  background: var(--bg);
-  border-radius: 20px;
 }
 
 /* 이미지 저장 버튼 */
