@@ -190,6 +190,46 @@
   gap: 16px;
 }
 
+/* 캡처 영역 */
+.captureArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 16px;
+  background: var(--bg);
+  border-radius: 20px;
+}
+
+/* 이미지 저장 버튼 */
+.saveImageButton {
+  width: 100%;
+  max-width: 320px;
+  padding: 14px;
+  border-radius: 50px;
+  border: 1.5px solid var(--lavender-dim);
+  background: white;
+  color: var(--text-mid);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: all 0.3s;
+  box-shadow: var(--shadow-soft);
+}
+
+.saveImageButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--lavender);
+  background: var(--lavender-light);
+  box-shadow: var(--shadow-hover);
+}
+
+.saveImageButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* 공유 버튼 */
 .shareButton {
   width: 100%;

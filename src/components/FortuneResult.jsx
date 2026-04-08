@@ -1,4 +1,5 @@
 import { useMemo, useRef, useEffect, useState, useCallback } from 'react'
+import html2canvas from 'html2canvas'
 import { getStarSign, getKoreanZodiac } from '../utils/zodiac'
 import { getTodayFortune } from '../utils/fortune'
 import { MainFortuneCard, CategoryCard } from './TarotCard'
@@ -17,8 +18,10 @@ const ELEMENT_COLORS = {
 
 export default function FortuneResult({ birthdate, onReset, isShared }) {
   const cardRefs = useRef([])
+  const captureRef = useRef(null)
   const [cardHeight, setCardHeight] = useState(null)
   const [copied, setCopied] = useState(false)
+  const [saving, setSaving] = useState(false)
   const [tarotSelected, setTarotSelected] = useState(() => {
     const params = new URLSearchParams(window.location.search)
     const t = params.get('tarot')
@@ -46,6 +49,27 @@ export default function FortuneResult({ birthdate, onReset, isShared }) {
     }
   }, [birthdate, tarotSelected])
 
+  const handleSaveImage = useCallback(async () => {
+    if (!captureRef.current || saving) return
+    setSaving(true)
+    try {
+      const canvas = await html2canvas(captureRef.current, {
+        backgroundColor: '#fdf6ff',
+        scale: 2,
+        useCORS: true,
+        logging: false,
+      })
+      const link = document.createElement('a')
+      link.download = `운세_${birthdate}.png`
+      link.href = canvas.toDataURL('image/png')
+      link.click()
+    } catch (e) {
+      console.error('이미지 저장 실패:', e)
+    } finally {
+      setSaving(false)
+    }
+  }, [birthdate, saving])
+
   useEffect(() => {
     const heights = cardRefs.current.map(el => el?.offsetHeight ?? 0)
     setCardHeight(Math.max(...heights))
@@ -65,6 +89,7 @@ export default function FortuneResult({ birthdate, onReset, isShared }) {
 
   return (
     <div className={styles.container}>
+      <div ref={captureRef} className={styles.captureArea}>
       {/* 날짜 헤더 */}
       <div className={styles.dateHeader}>
         <span className={styles.dateText}>{TODAY_STR}</span>
@@ -150,6 +175,13 @@ export default function FortuneResult({ birthdate, onReset, isShared }) {
           isShared={isShared}
         />
       </div>
+
+      </div>{/* captureArea 끝 */}
+
+      {/* 이미지 저장 버튼 */}
+      <button className={styles.saveImageButton} onClick={handleSaveImage} disabled={saving}>
+        {saving ? '⏳ 저장 중...' : '📸 이미지로 저장'}
+      </button>
 
       {/* 공유 / 내 운세 확인 버튼 */}
       {isShared ? (
