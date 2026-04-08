@@ -195,10 +195,15 @@ export default function FortuneResult({ birthdate, onReset, isShared }) {
         </div>
       )}
 
-      {/* 이미지 저장 버튼 */}
-      <button className={styles.saveImageButton} onClick={handleSaveImage} disabled={saving}>
-        {saving ? '⏳ 저장 중...' : '📸 이미지로 저장'}
-      </button>
+      {/* 이미지 저장 + 다른 날짜로 보기 */}
+      <div className={styles.buttonRow}>
+        <button className={styles.saveImageButton} onClick={handleSaveImage} disabled={saving}>
+          {saving ? '⏳ 저장 중...' : '📸 이미지로 저장'}
+        </button>
+        <button className={styles.resetButton} onClick={onReset}>
+          🔄 다른 날짜로 보기
+        </button>
+      </div>
 
       {/* 공유 / 내 운세 확인 버튼 */}
       {isShared ? (
@@ -210,11 +215,6 @@ export default function FortuneResult({ birthdate, onReset, isShared }) {
           {copied ? '✅ 링크가 복사됐어요!' : '🔗 운세 공유하기'}
         </button>
       )}
-
-      {/* 다시 보기 버튼 */}
-      <button className={styles.resetButton} onClick={onReset}>
-        🔄 다른 날짜로 보기
-      </button>
     </div>
   )
 }
