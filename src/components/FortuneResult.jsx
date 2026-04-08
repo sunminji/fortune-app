@@ -198,7 +198,7 @@ export default function FortuneResult({ birthdate, onReset, isShared }) {
       {/* 이미지 저장 + 다른 날짜로 보기 */}
       <div className={styles.buttonRow}>
         <button className={styles.saveImageButton} onClick={handleSaveImage} disabled={saving}>
-          {saving ? '⏳ 저장 중...' : '📸 이미지로 저장'}
+          {saving ? '⏳ 저장 중...' : '📸 이미지 저장'}
         </button>
         <button className={styles.resetButton} onClick={onReset}>
           🔄 다른 날짜로 보기
