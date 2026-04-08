@@ -256,6 +256,8 @@
 
 /* 리셋 버튼 */
 .resetButton {
+  width: 100%;
+  max-width: 400px;
   background: transparent;
   border: 1.5px solid var(--lavender-dim);
   border-radius: 50px;
